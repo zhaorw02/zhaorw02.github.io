@@ -22,10 +22,10 @@
        
         .results-carousel {
             display: flex;
-            flex-wrap: wrap;         /* 自动换行 */
-            justify-content: center; /* 水平居中 */
-            align-items: flex-start; /* 垂直顶对齐，或改成 center 看需求 */
-            gap: 20px;               /* 卡片间隙，可根据需求调整 */
+            flex-wrap: wrap;         
+            justify-content: center; 
+            align-items: flex-start; 
+            gap: 20px;              
            
             
           }
@@ -185,7 +185,7 @@
     <script>
         window.addEventListener("DOMContentLoaded", function() {
           var video = document.getElementById("teaser");
-          video.playbackRate = 0.8; // 0.5 倍速播放
+          video.playbackRate = 0.8; 
         });
       </script>
     
@@ -241,43 +241,6 @@
     
     
    
-    <!-- <section class="hero is-light is-small">
-        <div class="hero-body">
-            <div class="container">
-      
-              
-                <h2 class="title is-3 mt-5 has-text-centered">Mesh Animations</h2>
-                <p class="content has-text-centered is-size-5">
-                    The following results are animated by <a href="https://www.mixamo.com/">Mixamo</a>.
-                </p>
-              
-              <div class="level", style="width: 100%;">
-                <div class="level-item">
-                  <div class="has-text-centered" style="width: 100%;">
-                    <model-viewer src="animate.glb" poster="" style="width: 100%; height: 350px;" auto-rotate autoplay shadow-intensity="1"   camera-controls touch-action="pan-y"></model-viewer>
-                    
-                  </div>
-                </div>
-                
-                <div class="level-item">
-                  <div class="has-text-centered" style="width: 100%;">
-                    <model-viewer src="animate1.glb" poster="" style="width: 100%; height: 350px;" auto-rotate autoplay shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
-                    
-                  </div>
-                </div>
-                <div class="level-item">
-                  <div class="has-text-centered" style="width: 100%;">
-                    <model-viewer src="animate2.gltf" poster="" style="width: 100%; height: 350px;" auto-rotate autoplay shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
-                    
-                  </div>
-                </div>
-               
-              </div>
-            
-              
-            </div>
-        </div>
-      </section> -->
     
 
     <section class="section" id="BibTeX">
@@ -285,7 +248,15 @@
             <h2 class="title is-4">BibTeX</h2>
             <pre>
                 <code>
-                   
+                    @misc{zhao2025deepmeshautoregressiveartistmeshcreation,
+                        title={DeepMesh: Auto-Regressive Artist-mesh Creation with Reinforcement Learning}, 
+                        author={Ruowen Zhao and Junliang Ye and Zhengyi Wang and Guangce Liu and Yiwen Chen and Yikai Wang and Jun Zhu},
+                        year={2025},
+                        eprint={2503.15265},
+                        archivePrefix={arXiv},
+                        primaryClass={cs.CV},
+                        url={https://arxiv.org/abs/2503.15265}, 
+                  }
                 </code>
             </pre>
         </div>
@@ -340,10 +311,10 @@
         
 
     ]
-    // 分页参数
-    let currentPage = 1;  // 当前页码
-    let itemsPerPage = 4; // 每页显示的点云数
-    let totalPages = Math.ceil(items.length / itemsPerPage) || 1; // 总页数
+   
+    let currentPage = 1;  
+    let itemsPerPage = 4; 
+    let totalPages = Math.ceil(items.length / itemsPerPage) || 1; 
 
     for (let item of items) {
         let key = `images_${item}`;
@@ -397,27 +368,28 @@
         for (let div_id in div_to_scene) {
             let container = document.getElementById(div_id);
             if (container) {
-                container.innerHTML = ''; // 只清空 HTML，不删除对象
+                container.innerHTML = ''; 
             }
         }
-        list_of_orbit_controls = []; // 清空控制器
+        list_of_orbit_controls = []; 
     }
     
     function render_page(page) {
-        clear_scenes(); // 清除上一页的内容
-        let startIdx = (page - 1) * itemsPerPage; // 每页4个item
+        clear_scenes(); 
+        let startIdx = (page - 1) * itemsPerPage; 
         let endIdx = Math.min(startIdx + itemsPerPage, items.length);
     
         for (let i = 0; i < itemsPerPage; i++) {
             let itemIdx = startIdx + i;
-            if (itemIdx >= items.length) break; // 防止越界
+            if (itemIdx >= items.length) break; 
     
             let item = items[itemIdx];
-            let pcDiv = `pc_00${i + 1}`; // 固定位置
+            let pcDiv = `pc_00${i + 1}`;
             let pcCondDiv = `pc_cond_00${i + 1}`;
     
             setup_render_divs_pc(pcDiv, `./models/pc/${item}.ply`);
             setup_render_divs(pcCondDiv, `./models/pc_cond_ply/${item}.ply`);
+            
         }
     }
 
@@ -438,10 +410,10 @@
     window.onload = function () {
         render_page(currentPage); // 初始渲染第一页
     
-        // 获取渲染容器的父级
+        
         let renderContainer = document.getElementById("render-container");
     
-        // 创建翻页按钮容器
+      
         let navContainer = document.createElement("div");
     
         navContainer.style.display = "flex";
@@ -453,7 +425,6 @@
         //navContainer.style.background = "rgba(255, 255, 255, 0.9)";
         navContainer.style.borderRadius = "8px";
     
-        // 按钮样式函数
         function styleButton(button) {
             button.style.padding = "10px 20px";
             button.style.border = "none";
@@ -469,7 +440,6 @@
             button.onmouseup = () => (button.style.transform = "scale(1)");
         }
     
-        // 创建翻页按钮
         let prevButton = document.createElement("button");
         prevButton.textContent = "Back";
         prevButton.onclick = prevPage;
@@ -481,38 +451,33 @@
         styleButton(nextButton);
     
 
-        
     
-        // 跳转到指定页面
-        function goToPage(pageNum) {
-            if (pageNum >= 0 && pageNum < totalPages) {
-                currentPage = pageNum;
-                render_page(currentPage);
-                updateButtons(pageNum);
-                //updatePageIndicator();
-            }
-        }
-        // 更新按钮状态
+    
         function updateButtons() {
+            prevButton.style.display = currentPage === 1 ? "none" : "block";
+            nextButton.style.display = currentPage === totalPages ? "none" : "block";
+        }
+        
+        /*function updateButtons() {
             if (currentPage === 0) {
-                prevButton.style.display = "none"; // 隐藏Back按钮
+                prevButton.style.display = "none"; 
             } else {
-                prevButton.style.display = "block"; // 显示Back按钮
+                prevButton.style.display = "block";
             }
 
             if (currentPage === totalPages - 1) {
-                nextButton.style.display = "none"; // 隐藏Next按钮
+                nextButton.style.display = "none"; 
             } else {
-                nextButton.style.display = "block"; // 显示Next按钮
+                nextButton.style.display = "block";
             }
-        }
+        }*/
     
-        // 组装导航元素
+       
         navContainer.appendChild(prevButton);
         //navContainer.appendChild(pageIndicator);
         navContainer.appendChild(nextButton);
     
-        // 添加到页面
+      
         if (renderContainer) {
             renderContainer.appendChild(navContainer);
             //updatePageIndicator(); // 首次加载时创建指示器
@@ -541,10 +506,10 @@
             const loader = new PLYLoader();
             loader.load( point_cloud_path, function ( geometry ) {
                 
-                // 创建点云材质
+                
                 const material = new THREE.PointsMaterial({ color: 0x3e2984, size: 0.01 });
 
-                // 创建点云对象并设置几何体和材质
+                
                 const points = new THREE.Points(geometry, material);
                 const points2 = new THREE.Points(geometry, material);
 
@@ -629,11 +594,11 @@
             loader.load( mesh_path, function ( geometry ) {
               
                 geometry.computeVertexNormals();
-                    // 定义渐变色起止（深紫色到浅黄色）
+                    
                 let start_color = new THREE.Color(0.416, 0.106, 0.604); // 紫色
                 let end_color = new THREE.Color(1.0, 0.976, 0.769);     // 黄色
 
-                // 计算高度范围
+              
                 let position = geometry.attributes.position;
                 let minY = Infinity, maxY = -Infinity;
                 for (let i = 0; i < position.count; i++) {
@@ -641,12 +606,11 @@
                     if (y < minY) minY = y;
                     if (y > maxY) maxY = y;
                 }
-                let deltaY = maxY - minY || 1; // 避免除 0
-
-                // 创建顶点颜色数组
+                let deltaY = maxY - minY || 1; 
+                
                 let colors = new Float32Array(position.count * 3);
                 for (let i = 0; i < position.count; i++) {
-                    let t = (position.getY(i) - minY) / deltaY; // 归一化 [0,1]
+                    let t = (position.getY(i) - minY) / deltaY; 
                     let color = new THREE.Color(
                         start_color.r * (1 - t) + end_color.r * t,
                         start_color.g * (1 - t) + end_color.g * t,
@@ -657,10 +621,10 @@
                     colors[i * 3 + 2] = color.b;
                 }
 
-                // 赋值到几何体
+               
                 geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
                 let material_color = new THREE.MeshStandardMaterial({
-                    vertexColors: true, // 启用顶点颜色
+                    vertexColors: true, 
                     flatShading: true,
                     side: THREE.DoubleSide
                 });
