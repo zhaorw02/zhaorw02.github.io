@@ -154,15 +154,15 @@
               <br>
               <em>arXiv, 2026</em> 
               <br>
-              <a href="">project page</a> 
+              <a href="https://zhaorw02.github.io/GEM">paper page</a> 
               /
-              <a href="">code</a>
+              <a href="https://github.com/zhaorw02/GEM">code</a>
               /
               <a href="">arXiv</a> 
               /
-              <a href="">model</a>
+              <a href="https://huggingface.co/zzzrw/GEM-2B">model</a>
               /
-              <a href="">dataset</a>
+              <a href="https://huggingface.co/datasets/zzzrw/GEM-250K">dataset</a>
               <p></p>
             </td>
           </tr>    
@@ -487,17 +487,20 @@
         </td>
       </tr>
   </table>
-  <script>
+ <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const videoIds = ["motubrain-video", "gem-video"];
+      const videoSpeeds = {
+        "motubrain-video": 4.0,
+        "gem-video": 2.0,
+      };
 
-      videoIds.forEach((id) => {
+      Object.entries(videoSpeeds).forEach(([id, speed]) => {
         const v = document.getElementById(id);
         if (!v) return;
 
         const speedUp = () => {
-          v.defaultPlaybackRate = 4.0;
-          v.playbackRate = 4.0;
+          v.defaultPlaybackRate = speed;
+          v.playbackRate = speed;
         };
 
         v.addEventListener("loadedmetadata", speedUp);
