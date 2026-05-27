@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="GEM: Generative Supervision Helps Embodied Intelligence">
+    <meta name="keywords" content="Embodied Intelligence, Vision-Language Models, Vision-Language-Action Models">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GEM</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <style>
+       
+        .results-carousel {
+            display: flex;
+            flex-wrap: wrap;         
+            justify-content: center; 
+            align-items: flex-start; 
+            gap: 20px;              
+           
+            
+          }
+          .caption-text {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+		.render_wrapper {
+            position: relative;
+            height: 300px;
+            
+            
+        }
+   
+		.render_div {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+       
+       
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <!-- model viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+    
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <!-- <div class="has-text-centered">
+                            <img src="static/images/logo.png" alt="Logo" style="max-height: 100px;">
+                        </div> -->
+                        <h1 class="title is-1 publication-title">GEM: Generative Supervision Helps Embodied Intelligence</h1>    
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                          
+                                <div class="is-size-8 publication-authors">
+                                 
+                                    <a href="https://zhaorw02.github.io/">Ruowen Zhao</a><sup>1</sup>,
+                                    Bangguo Li<sup>1</sup>,
+                                    <a href="https://liuzuyan.github.io/">Zuyan Liu</a><sup>1,2,†</sup>,
+                                    Yinan Liang<sup>1</sup>,
+                                    <a href="https://jamesyjl.github.io/">Junliang Ye</a><sup>1</sup>,
+                                    <a href="https://liuff19.github.io/">Fangfu Liu</a><sup>1</sup>,
+                                    </div>
+                                <div class="is-size-8 publication-authors">
+    
+                                     
+                            
+                                     Diankun Wu<sup>1</sup>,
+                                     <a href="https://thuwzy.github.io/">Zhengyi Wang</a><sup>1</sup>,
+                                    <a href="https://yuxumin.github.io/">Xumin Yu</a><sup>2</sup>,
+                                    <a href="https://raoyongming.github.io/">Yongming Rao</a><sup>2,‡</sup>,
+                                     <a href="https://ancientmooner.github.io/">Han Hu</a><sup>2</sup>,
+                                    <a href="https://ml.cs.tsinghua.edu.cn/~jun/index.shtml">Jun Zhu</a><sup>1,‡</sup>
+                                 
+                                </div>
+                            <div class="is-size-8 publication-authors">
+                                <sup>1</sup>Tsinghua University,
+                                <sup>2</sup>Tencent Hunyuan
+                            </div>
+                                <sup>†</sup>Project Lead&emsp; <sup>‡</sup>Corresponding Author
+                             
+                        </div>
+                            <div class="column has-text-centered">
+                                <div class="publication-links">
+
+                                    <span class="link-block">
+                                        <a href="" class="external-link button is-normal is-rounded is-dark" href="">
+                                            <span class="icon">
+                                                <i class="ai ai-arxiv"></i>
+                                            </span>
+                                            <span>arXiv</span>
+                                        </a>
+                                    </span>
+                                    <!-- Github Link. -->
+                                    <span class="link-block">
+                                        <a href="" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                            <span>Code</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <svg class="svg-inline--fa fa-database fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="database" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"></path></svg>
+                                            </span>
+                                            <span>Checkpoint</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://huggingface.co/datasets/zzzrw/GEM-4M" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <svg class="svg-inline--fa fa-database fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="database" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"></path></svg>
+                                            </span>
+                                            <span>Dataset</span>
+                                        </a>
+                                    </span>
+                                    
+                                    
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container is-max-desktop">
+        <h2 class="title is-3" style="text-align: center;"> Demo Video </h2>
+        <div class="columns is-centered has-text-centered">
+          
+          <div class="column is-full-width">
+            <div class="column">
+            <video id="teaser" controls playsinline preload="metadata" style="width: 100%; max-width: 1350px; height: auto; border-radius: 10px;">
+            <source src="./static/videos/GEM-demo.mp4" type="video/mp4">
+            </video>
+              <div class="content has-text-justified">
+              <p>
+                <strong>Demo video for GEM.</strong> We present GEM, a generative-supervised embodied vision-language model (VLM)
+                that enhances semantic reasoning and physical grounding by incorporating a depth-generation objective during VLM pre-training. 
+                Built upon the GEM architecture, GEM-VLA further demonstrates strong generalization to real-world robot manipulation tasks, as shown in the video.
+                
+              </p>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </section>
+
+        
+
+
+
+   <!-- Paper abstract -->
+    <section class="hero is-light is-small">
+        <div class="container is-max-desktop">
+            <h2 class="title is-3" style="text-align: center; margin-top: 10px;">Abstract</h2>
+           
+            <div class="content has-text-justified">
+                <p>
+                Embodied Vision-Language Models (VLMs) have demonstrated impressive performance and generalization in robotics, particularly within Vision-Language-Action frameworks.  
+                However, a significant gap remains between the high-level semantic focus of standard text-guided pre-training paradigms and the low-level spatial and physical knowledge critical for execution in embodied environments. 
+                In this paper, we introduce <strong>GEM</strong>, a Generative-supervised Embodied vision-language Model designed to bridge this divide.   
+                We propose integrating a depth map generation task directly into the VLM pre-training phase.   By training this generative objective jointly with the main model, 
+                we observe substantial improvements in embodied intelligence, significantly enhancing both semantic understanding and physical operation capabilities.   
+                To support this paradigm, we curate and release GEM-4M, a comprehensive large-scale dataset featuring a mixture of grounding, reasoning, and planning data paired with high-quality depth supervision.   
+                Extensive experiments demonstrate that GEM achieves state-of-the-art results across diverse embodied benchmarks.   
+                Furthermore, our deployed action model, GEM-VLA, exhibits vastly superior task execution abilities in both simulation environments and real-world evaluations.
+                </p>
+            </div>
+   
+        
+            <h2 class="title is-3" style="text-align: center;">Overview</h2>
+            <img width="1450px" src="./static/images/overview.png" alt="MY ALT TEXT"/> 
+            <div class="content has-text-justified">
+                <p>
+                    <strong>Fig1. overview of GEM</strong>.  GEM is a generative-supervised embodied VLM that strengthens semantic reasoning and physical grounding by combining language modeling with an auxiliary depth-generation objective (center). 
+                    Trained on the high-quality, large-scale pre-training datasets spanning diverse embodied tasks (left), GEM achieves strong performance across a wide range of embodied benchmarks. Based on the architecture of GEM, 
+                    the extending GEM-VLA attains state-of-the-art success rates on LIBERO and generalizes well to real-world robot manipulation (right).
+                </p>
+            </div>
+      
+        
+            <h2 class="title is-3" style="text-align: center;">Method</h2>
+            <img width="1450px" src="./static/images/framework.png" alt="MY ALT TEXT"/> 
+            <div class="content has-text-justified">
+                <p>
+                <strong>Fig2. architecture of GEM</strong>. GEM augments a VLM backbone with a DiT-based depth generator conditioned on the backbone’s final-layer visual tokens. 
+                We adopt a progressive training paradigm: (i) initialize the connector, (ii) warm up the depth generator, (iii) perform end-to-end joint training, and (iv) train an autoregressive action expert on GEM’s multimodal tokens. 
+                Building on GEM, the GEM-based VLA predicts continuous actions from these representations, improving robot manipulation. 
+                </p>
+            </div>
+        </div>
+        
+    </section>
+
+   
+   <section>
+        <h2 class="title is-3" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            Real-world Robot Tasks
+        </h2>
+
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 2%;">
+            
+            <div style="flex: 0 0 30%; text-align: center;">
+            <h3 style="margin-bottom: 10px;font-style: italic;font-family: Cormorant Garamond, 'Times New Roman', serif; font-weight: 800;font-size: 18px;">"Fold the two sleeves inwards, then fold the bottom upwards."<br> ---4x speed</h3>
+            <video class="speed-videox4" style="width: 80%; height: auto; object-fit: contain;" controls muted loading="lazy" autoplay loop playsinline>
+                <source src="./static/videos/cloth_folding.mp4" type="video/mp4" />
+            </video>
+            </div>
+
+            <div style="flex: 0 0 30%; text-align: center;">
+            <h3 style="margin-bottom: 10px;font-style: italic;font-family: Cormorant Garamond, 'Times New Roman', serif; font-weight: 800;font-size: 18px;">"Pick up the fork/knife/spoon/plate/goblet, and place it on mate." <br> ---4x speed</h3>
+            <video class="speed-videox4" style="width: 80%; height: auto; object-fit: contain;" controls muted loading="lazy" autoplay loop playsinline>
+                <source src="./static/videos/table_bussing.mp4" type="video/mp4" />
+            </video>
+            </div>
+
+        </div>
+
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 2%;">
+            
+            <div style="flex: 0 0 30%; text-align: center;">
+            <h3 style="margin-bottom: 10px;font-style: italic;font-family: Cormorant Garamond, 'Times New Roman', serif; font-weight: 800;font-size: 18px;">"Unzip the backpack."<br>---2x speed</h3>
+            <video class="speed-videox2" style="width: 80%; height: auto; object-fit: contain;" controls muted loading="lazy" autoplay loop playsinline>
+                <source src="./static/videos/unzipping.mp4" type="video/mp4" />
+            </video>
+            </div>
+
+            <div style="flex: 0 0 30%; text-align: center;">
+            <h3 style="margin-bottom: 10px;font-style: italic;font-family: Cormorant Garamond, 'Times New Roman', serif; font-weight: 800;font-size: 18px;">"Insert the flowers into the vase."<br>---2x speed</h3>
+            <video class="speed-videox2" style="width: 80%; height: auto; object-fit: contain;" controls muted loading="lazy" autoplay loop playsinline>
+                <source src="./static/videos/flower_inserting.mp4" type="video/mp4" />
+            </video>
+            </div>
+
+        </div>
+
+         <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 2%;">
+            
+            <div style="flex: 0 0 30%; text-align: center;">
+            <h3 style="margin-bottom: 10px;font-style: italic;font-family: Cormorant Garamond, 'Times New Roman', serif; font-weight: 800;font-size: 18px;">"Arrange the scattered blocks to spell out the word 'GEM'."<br>---4x speed</h3>
+            <video class="speed-videox4" style="width: 80%; height: auto; object-fit: contain;" controls muted loading="lazy" autoplay loop playsinline>
+                <source src="./static/videos/gem.mp4" type="video/mp4" />
+            </video>
+            </div>
+
+            <div style="flex: 0 0 30%; text-align: center;">
+            <h3 style="margin-bottom: 10px;font-style: italic;font-family: Cormorant Garamond, 'Times New Roman', serif; font-weight: 800;font-size: 18px;">"Stack the blocks to form a tower."<br>---6x speed</h3>
+            <video class="speed-videox6" style="width: 80%; height: auto; object-fit: contain;" controls muted loading="lazy" autoplay loop playsinline>
+                <source src="./static/videos/block_stacking.mp4" type="video/mp4" />
+            </video>
+            </div>
+
+        </div>
+        </section>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const videos = document.querySelectorAll(".speed-videox6");
+            videos.forEach(video => {
+            video.playbackRate = 6.0;  
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const videos = document.querySelectorAll(".speed-videox4");
+            videos.forEach(video => {
+            video.playbackRate = 4.0;  
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const videos = document.querySelectorAll(".speed-videox2");
+            videos.forEach(video => {
+            video.playbackRate = 2.0;  
+            });
+        });
+        </script>
+    
+    
+    
+   
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-4">BibTeX</h2>
+            <pre>
+                <code>
+                 
+                </code>
+            </pre>
+        </div>
+    </section>
+
+    
+    
+
+    
+
+</body>
+
+</html>
